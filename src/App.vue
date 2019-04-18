@@ -1,18 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div id="app">
+		<h3>current page {{currentPage}}</h3>
+		<Pagination
+			v-model="currentPage"
+			:pagesList="generatePagesList" />
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Pagination from './components/Pagination.vue'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+	name: 'app',
+	components: {
+		Pagination
+	},
+	data: () => ({
+		currentPage: 1
+	}),
+	computed: {
+		generatePagesList () {
+			return Array.from({length: 50}, (value, idx) => idx + 1);
+		}
+	}
 }
 </script>
 
